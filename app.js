@@ -7,6 +7,8 @@ let csvdata
 let iparray = []
 
 let osdiv = document.getElementById("osdiv")
+let browserdiv = document.getElementById("browserdiv")
+
 
 
 
@@ -32,6 +34,7 @@ myForm.addEventListener("submit", function (e) {
         calculatecountries(csvdata)
 
         oschart(csvdata)
+        browserchart(csvdata)
 
 
 
@@ -148,6 +151,7 @@ function oschart(csvdata) {
         counts[item] = counts[item] ? counts[item] + 1 : 1;
     }
     console.log(counts)
+    osdiv.style.display = "block"
 
     const ctx = document.getElementById('oscanvas')
 
@@ -171,7 +175,40 @@ function oschart(csvdata) {
 }
 
 
+function browserchart (csvdata) {
+    let browserarray = []
+    for (let index = 0; index < csvdata.length; index++) {
+        let browsername = csvdata[index]["Browser"]
+        browserarray.push(browsername)
+    }
+    console.log(browserarray)
+    const counts = {};
 
+    for (const item of browserarray) {
+        counts[item] = counts[item] ? counts[item] + 1 : 1;
+    }
+    console.log(counts)
+    browserdiv.style.display = "block"
+
+    const ctx = document.getElementById('browsercanvas')
+
+    
+
+    let browserlabels = Object.keys(counts)
+    let browserdata = Object.values(counts)
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: browserlabels,
+            datasets: [{
+                label: '#',
+                data: browserdata,
+                borderWidth: 1
+            }]
+        },
+
+    });
+}
 
 // Geolocation url
 // https://www.geoplugin.com/quickstart

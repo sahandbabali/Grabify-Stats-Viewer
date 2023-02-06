@@ -3,3 +3,10 @@
     /* margin-top: 1rem; */
 }
 
+#osdiv {
+    display: none;
+}
+
+#browserdiv {
+    display: none;
+}

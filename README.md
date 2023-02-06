@@ -5,10 +5,13 @@ free tools used for this project:
 - D3.js
 - OpenStreetMap
 - geoplugin.net
+- Chart.js
+
+
 
 
 to do:
-- add countries component
+- add countries component ***
 - add browser component
 - add device component
 - add os component
