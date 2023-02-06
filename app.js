@@ -6,6 +6,9 @@ const csvFile = document.getElementById("csvFile");
 let csvdata
 let iparray = []
 
+let osdiv = document.getElementById("osdiv")
+
+
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 20,
@@ -28,6 +31,9 @@ myForm.addEventListener("submit", function (e) {
         // calculate and add countries table
         calculatecountries(csvdata)
 
+        oschart(csvdata)
+
+
 
     };
 
@@ -47,7 +53,6 @@ function getipaddresses(csvdata) {
 
 }
 
-
 function geolocate() {
     console.log("geolocation started...")
     for (let index = 0; index < iparray.length; index++) {
@@ -64,17 +69,12 @@ function geolocate() {
 
 }
 
-
-
-
 function calculatecountries(csvdata) {
     // console.log(csvdata)
     let countsarray = []
     for (let index = 0; index < csvdata.length; index++) {
         let countname = csvdata[index]["Country"].split(',')[0]
         countsarray.push(countname)
-
-
     }
     console.log(countsarray)
 
@@ -114,13 +114,13 @@ function calculatecountries(csvdata) {
         </thead>
         <tbody>`
 
-        let tablelastpart = ` </tbody>
+    let tablelastpart = ` </tbody>
         </table>
       </div>
     </div>`
 
     for (let index = 0; index < 5; index++) {
-        
+
         tablepart1 += ` <tr>
         <th scope="row">${index + 1}</th>
         <td>${sortedarray[index][0]}</td>
@@ -135,10 +135,40 @@ function calculatecountries(csvdata) {
 
 }
 
+function oschart(csvdata) {
+    let osarray = []
+    for (let index = 0; index < csvdata.length; index++) {
+        let osname = csvdata[index]["Operating System"]
+        osarray.push(osname)
+    }
+    console.log(osarray)
+    const counts = {};
 
+    for (const item of osarray) {
+        counts[item] = counts[item] ? counts[item] + 1 : 1;
+    }
+    console.log(counts)
 
+    const ctx = document.getElementById('oscanvas')
 
+    
 
+    let oslabels = Object.keys(counts)
+    let osdata = Object.values(counts)
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: oslabels,
+            datasets: [{
+                label: '#',
+                data: osdata,
+                borderWidth: 1
+            }]
+        },
+
+    });
+
+}
 
 
 

@@ -30,6 +30,7 @@
       crossorigin="anonymous"
     ></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 
     <link rel="stylesheet" href="./style.css" />
@@ -75,7 +76,15 @@
 
       <div id="countriesbox"></div>
 
-      
+      <div class="row">
+        <div id="osdiv" class="col-sm-12 col-md-6">
+          <canvas id="oscanvas"></canvas>
+        </div>
+        <div class="col-sm-12 col-md-6">
+          Column
+        </div>
+      </div>
+
     </div>
 
     <script defer src="./app.js"></script>
