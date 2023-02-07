@@ -37,7 +37,6 @@ myForm.addEventListener("submit", function (e) {
         browserchart(csvdata)
         overview(csvdata)
 
-
     };
 
     reader.readAsText(input);
@@ -73,20 +72,20 @@ function geolocate() {
 }
 
 function calculatecountries(csvdata) {
-    // console.log(csvdata)
+     console.log(csvdata)
     let countsarray = []
     for (let index = 0; index < csvdata.length; index++) {
         let countname = csvdata[index]["Country"].split(',')[0]
         countsarray.push(countname)
     }
-    console.log(countsarray)
+    // console.log(countsarray)
 
     const counts = {};
 
     for (const item of countsarray) {
         counts[item] = counts[item] ? counts[item] + 1 : 1;
     }
-    console.log(counts)
+   // console.log(counts)
 
 
 
@@ -101,7 +100,7 @@ function calculatecountries(csvdata) {
 
 
     let sortedarray = sortable.reverse()
-    console.log(sortedarray)
+    // console.log(sortedarray)
 
     // update the table
     let tablepart1 = `<div class="card">
@@ -144,13 +143,13 @@ function oschart(csvdata) {
         let osname = csvdata[index]["Operating System"]
         osarray.push(osname)
     }
-    console.log(osarray)
+   // console.log(osarray)
     const counts = {};
 
     for (const item of osarray) {
         counts[item] = counts[item] ? counts[item] + 1 : 1;
     }
-    console.log(counts)
+ //   console.log(counts)
     osdiv.style.display = "block"
 
     const ctx = document.getElementById('oscanvas')
@@ -182,13 +181,13 @@ function browserchart (csvdata) {
 
         browserarray.push(browsername)
     }
-    console.log(browserarray)
+  //  console.log(browserarray)
     const counts = {};
 
     for (const item of browserarray) {
         counts[item] = counts[item] ? counts[item] + 1 : 1;
     }
-    console.log(counts)
+   // console.log(counts)
     browserdiv.style.display = "block"
 
     const ctx = document.getElementById('browsercanvas')
@@ -236,6 +235,11 @@ function overview(csvdata) {
     document.getElementById("botcount").innerText = botcount;
 
 }
+
+
+
+
+
 
 // Geolocation url
 // https://www.geoplugin.com/quickstart
