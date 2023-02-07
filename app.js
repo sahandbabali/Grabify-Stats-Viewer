@@ -35,7 +35,7 @@ myForm.addEventListener("submit", function (e) {
 
         oschart(csvdata)
         browserchart(csvdata)
-
+        overview(csvdata)
 
 
     };
@@ -122,7 +122,7 @@ function calculatecountries(csvdata) {
       </div>
     </div>`
 
-    for (let index = 0; index < 5; index++) {
+    for (let index = 0; index < sortedarray.length; index++) {
 
         tablepart1 += ` <tr>
         <th scope="row">${index + 1}</th>
@@ -178,7 +178,8 @@ function oschart(csvdata) {
 function browserchart (csvdata) {
     let browserarray = []
     for (let index = 0; index < csvdata.length; index++) {
-        let browsername = csvdata[index]["Browser"]
+        let browsername = csvdata[index]["Browser"].split('(')[0]
+
         browserarray.push(browsername)
     }
     console.log(browserarray)
@@ -208,6 +209,32 @@ function browserchart (csvdata) {
         },
 
     });
+}
+
+
+function overview(csvdata) {
+
+    let botcount = 0
+    let vpncount = 0
+    for (let index = 0; index < csvdata.length; index++) {
+       
+
+        if (csvdata[index]["Is Bot"] == "Yes"){
+            botcount++
+        }
+        if (csvdata[index]["VPN/Proxy Detection"] == "Yes"){
+            vpncount++
+        }
+        
+    }
+
+    console.log("bots" + botcount)
+    document.getElementById("overviewbox").style.display = "block"
+
+    document.getElementById("clickcount").innerText = csvdata.length;
+    document.getElementById("vpncount").innerText = vpncount;
+    document.getElementById("botcount").innerText = botcount;
+
 }
 
 // Geolocation url
