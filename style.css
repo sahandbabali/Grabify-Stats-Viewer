@@ -15,3 +15,12 @@
 #overviewbox {
     display: none;
 }
+
+.card {
+    margin-bottom: 1rem;
+}
+
+
+body {
+    background-color: lightgrey;
+}
